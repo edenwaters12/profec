@@ -114,7 +114,81 @@ const observer = new IntersectionObserver((entries)=>{
         }
     });
 });
+ //not inspect
+ document.addEventListener('contextmenu', function(e) {
+    e.preventDefault();
+});
 
+// Disable keyboard shortcuts for ctrl+u
+document.addEventListener('keydown', function(event) {
+    if (event.ctrlKey && (event.keyCode === 85 || event.keyCode === 83 || event.keyCode === 73)) {
+        event.preventDefault();
+    }
+});
+
+// Disable keyboard shortcuts for ctrl+c
+document.addEventListener('keydown', function(event) {
+    if (event.ctrlKey && (event.keyCode === 67 || event.keyCode === 86)) {
+        event.preventDefault();
+    }
+});        
+
+// Disable keyboard shortcuts for ctrl+a
+document.addEventListener('keydown', function(event) {
+    if (event.ctrlKey && event.key === 'a') {
+        event.preventDefault(); // Prevent default action
+        // You can optionally show a message or take other actions here
+    }
+});
+
+// Disable keyboard shortcuts for ctrl+p
+document.addEventListener('keydown', function(event) {
+    if (event.ctrlKey && event.key === 'p') {
+        event.preventDefault(); // Prevent default printing behavior
+        console.log("Printing is disabled.");
+        // You can display a message or perform any other action here
+    }
+});
+
+// Disable keyboard shortcuts for window+shift+s
+document.addEventListener('keydown', function(event) {
+    if (event.windowKey && event.shiftKey && event.key === 's')
+    {
+      e.preventDefault();
+    }
+  });
+
+// Disable opening images in new tab on left-click
+document.addEventListener('mousedown', function (e) {
+    if (e.button === 0 && e.target.tagName === 'IMG') {
+        e.preventDefault();
+    }
+});
+
+// Disable text selection on the entire document
+    function disableTextSelection() {
+        document.addEventListener('selectstart', disableSelect);
+        document.addEventListener('contextmenu', disableRightClick);
+    }
+
+    function enableTextSelection() {
+        document.removeEventListener('selectstart', disableSelect);
+        document.removeEventListener('contextmenu', disableRightClick);
+    }
+
+    function disableSelect(e) {
+        e.preventDefault();
+        return false;
+    }
+
+    function disableRightClick(e) {
+        e.preventDefault();
+        return false;
+    }
+
+    disableTextSelection();
+
+ //end
 const scrollScale = document.querySelectorAll(".scroll-scale");
 scrollScale.forEach((el)=>observer.observe(el));
 
