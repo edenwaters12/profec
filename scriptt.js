@@ -114,10 +114,13 @@ const observer = new IntersectionObserver((entries)=>{
         }
     });
 });
+
+// diseble shaile
  //not inspect
  document.addEventListener('contextmenu', function(e) {
     e.preventDefault();
 });
+
 
 // Disable keyboard shortcuts for ctrl+u
 document.addEventListener('keydown', function(event) {
@@ -197,3 +200,21 @@ scrollBottom.forEach((el)=>observer.observe(el));
 
 const scrollTop = document.querySelectorAll(".scroll-top");
 scrollTop.forEach((el)=>observer.observe(el));
+
+
+//my diseble
+document.addEventListener("contextmenu", function (e) {
+    e.preventDefault();
+});
+document.addEventListener('keydown', function (e) {
+    if (
+        e.key === 'F12' ||
+        (e.ctrlKey && e.shiftKey && e.key === 'I') ||
+        (e.ctrlKey && e.key === 'u') ||
+        e.ctrlKey ||
+        e.shiftKey ||
+        e.altKey
+    ) {
+        e.preventDefault();
+    }
+});
